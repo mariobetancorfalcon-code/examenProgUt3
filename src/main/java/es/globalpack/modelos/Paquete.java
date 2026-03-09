@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package es.globalpack.modelos;
+import es.globalpack.modelos.detalles.Direccion;
 
 /**
  *○ Deben definir sus constructores llamando obligatoriamente al constructor de la
@@ -10,21 +11,27 @@ clase base.
 ○ Paquete: Añade el atributo propio volumen (double).
  * @author Mario Betancor
  */
-public class Paquete extends Envio {
-    protected double volumen;
-    String idSeguimiento;
-    double peso;
-    
-    public Paquete(String idSeguimiento, double peso, double volumen){
-            super();
-            this.volumen = volumen;
+public class Paquete extends Envio implements Asegurable {
+    private double volumen;
+    public Paquete(String idSeguimiento, double peso, Direccion destino, double volumen) {
+        super(idSeguimiento, peso, destino); // Llamada obligatoria 
+        this.volumen = volumen;
     }
-    
+
     @Override
-    public double calcularPrecioFinal(){
-       double precioBase = 5.0;
-       for(){
-           
-       }
+    public double calcularPrecioFinal() {
+        double precio = 5.0;  
+        if (peso > 5) {
+            precio += (peso - 5) * 2.0; 
+        }
+        if (volumen > 1.0) {
+            precio += 10.0; 
+        }
+        return precio;
+    }
+
+    @Override
+    public double calcularSeguro(double valorMercancia) {
+        return valorMercancia * 0.03; 
     }
 }

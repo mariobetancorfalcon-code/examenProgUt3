@@ -20,6 +20,11 @@ public class Direccion {
         this.ciudad = ciudad;
     }
     
+    // Getter para la ciudad (necesario para la lógica de Sobre) [cite: 49]
+    public String getCiudad() {
+        return ciudad;
+    }
+    
     //tostring
     @Override
     public String toString(){
